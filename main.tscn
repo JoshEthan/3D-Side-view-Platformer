@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ba30qku1swv6"]
+[gd_scene load_steps=9 format=3 uid="uid://ba30qku1swv6"]
 
 [ext_resource type="Texture2D" uid="uid://bfhg6rpa2rarf" path="res://grid2.png" id="1_je64s"]
 [ext_resource type="Script" path="res://Character.gd" id="2_w8ncr"]
@@ -14,6 +14,15 @@ size = Vector3(1, 2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_hw3n0"]
 size = Vector3(1, 2, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fdeyj"]
+
+[sub_resource type="Sky" id="Sky_ko5l3"]
+sky_material = SubResource("ProceduralSkyMaterial_fdeyj")
+
+[sub_resource type="Environment" id="Environment_1l0vt"]
+background_mode = 2
+sky = SubResource("Sky_ko5l3")
 
 [node name="Main" type="Node3D"]
 
@@ -50,3 +59,6 @@ mesh = SubResource("BoxMesh_hw3n0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 10)
 projection = 1
 size = 20.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1l0vt")
