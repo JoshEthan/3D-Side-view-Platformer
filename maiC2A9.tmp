@@ -1,13 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://ba30qku1swv6"]
+[gd_scene load_steps=15 format=3 uid="uid://ba30qku1swv6"]
 
 [ext_resource type="Texture2D" uid="uid://bfhg6rpa2rarf" path="res://grid2.png" id="1_je64s"]
 [ext_resource type="Script" path="res://Character.gd" id="2_w8ncr"]
-[ext_resource type="Script" path="res://states/StateMachine.gd" id="3_duaum"]
-[ext_resource type="Script" path="res://states/Idle.gd" id="4_syl1g"]
-[ext_resource type="Script" path="res://states/Walk.gd" id="5_sh0vl"]
-[ext_resource type="Script" path="res://states/Jump.gd" id="6_0vn3o"]
-[ext_resource type="Script" path="res://states/FallState.gd" id="7_wktfs"]
-[ext_resource type="Script" path="res://states/LandState.gd" id="8_h8kic"]
+[ext_resource type="Script" path="res://StateMachine.gd" id="3_duaum"]
+[ext_resource type="Script" path="res://Idle.gd" id="4_syl1g"]
+[ext_resource type="Script" path="res://Walk.gd" id="5_sh0vl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fdeyj"]
 
@@ -76,14 +73,14 @@ script = ExtResource("2_w8ncr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_wf1tm")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Character/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_hw3n0")
-skeleton = NodePath("../..")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Character/CollisionShape3D/MeshInstance3D"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Character/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.496275, 0.487743, 0)
 mesh = SubResource("BoxMesh_cr4tq")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_ls5q4")
 
 [node name="Camera3D" type="Camera3D" parent="Character"]
@@ -102,13 +99,3 @@ character = NodePath("../..")
 [node name="Walk" type="Node" parent="Character/StateMachine" node_paths=PackedStringArray("character")]
 script = ExtResource("5_sh0vl")
 character = NodePath("../..")
-
-[node name="Jump" type="Node" parent="Character/StateMachine" node_paths=PackedStringArray("character")]
-script = ExtResource("6_0vn3o")
-character = NodePath("../..")
-
-[node name="Fall_State" type="Node" parent="Character/StateMachine"]
-script = ExtResource("7_wktfs")
-
-[node name="Land_State" type="Node" parent="Character/StateMachine"]
-script = ExtResource("8_h8kic")
