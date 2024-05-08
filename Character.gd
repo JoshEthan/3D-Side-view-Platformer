@@ -19,7 +19,7 @@ func _physics_process(delta):
 	# Add the gravity.		
 	#if is_falling():
 		#velocity.y -= gravity * delta
-	velocity.y -= gravity * delta
+	#velocity.y -= gravity * delta
 			
 	# Handle jump.	
 	#if Input.is_action_pressed("ui_accept") and can_jump():
@@ -62,14 +62,21 @@ func flip_mesh():
 	if velocity.x < 0:
 		mesh.rotation_degrees = Vector3(0, 180, 0)
 
+var a_size = 1
+var b_size = 1
 func jump_mesh(delta):
-	var wide = 50
+	var wide = 1.5
 	var thin = 0.5
 	#move_toward(1, wide, delta)
-	$CollisionShape3D.scale = Vector3(move_toward(1, wide, delta), move_toward(1, wide, delta), move_toward(1, wide, delta)) 
+	a_size = move_toward(a_size, wide, delta)
+	b_size = move_toward(b_size, thin, delta)
+	print(a_size)
+	$CollisionShape3D.scale = Vector3(a_size, b_size, a_size) 
 	
-func idle_mesh():
-	$CollisionShape3D.scale = Vector3.ONE
+func idle_mesh(delta):
+	a_size = move_toward(a_size, 1, delta)
+	b_size = move_toward(b_size, 1, delta)
+	$CollisionShape3D.scale = Vector3(a_size, b_size, a_size)
 	
 func land_mesh():
 	$CollisionShape3D.scale = Vector3(1.5, 0.5, 1.5)

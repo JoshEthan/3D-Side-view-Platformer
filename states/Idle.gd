@@ -11,13 +11,14 @@ func Exit():
 	pass
 	
 func Update(_delta: float):
+	character.idle_mesh(_delta)
 	if character.is_on_floor():
 		if Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right"):
-			Transitioned.emit(self, "Walk")
+			Transitioned.emit(self, "walk")
 		if Input.is_action_just_pressed("ui_accept"):
-			Transitioned.emit(self, "Jump")
+			Transitioned.emit(self, "jump")
 	elif !character.is_on_floor():
-		Transitioned.emit(self, "Fall")
+		Transitioned.emit(self, "fall_state")
 	
 func Physics_Update(_delta: float):
 	pass

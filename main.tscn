@@ -107,8 +107,9 @@ character = NodePath("../..")
 script = ExtResource("6_0vn3o")
 character = NodePath("../..")
 
-[node name="Fall_State" type="Node" parent="Character/StateMachine"]
+[node name="Fall_State" type="Node" parent="Character/StateMachine" node_paths=PackedStringArray("character")]
 script = ExtResource("7_wktfs")
+character = NodePath("../..")
 
 [node name="Land_State" type="Node" parent="Character/StateMachine"]
 script = ExtResource("8_h8kic")

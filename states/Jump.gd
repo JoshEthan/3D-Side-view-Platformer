@@ -11,14 +11,16 @@ func Exit():
 	
 func Update(_delta: float):
 	character.jump_mesh(_delta)
-	if character.is_on_floor():
-		if Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right"):
-			Transitioned.emit(self, "Walk")
-		if Input.is_action_just_pressed("ui_accept"):
-			Transitioned.emit(self, "Jump")
-	elif !character.is_on_floor():
-		Transitioned.emit(self, "Fall")
+	if Input.is_action_just_released("ui_accept"):
+		Transitioned.emit(self, "fall_state")
 	
 	
 func Physics_Update(_delta: float):
-	pass
+	# Handle jump.	
+	if Input.is_action_pressed("ui_accept"):
+		#is_jumping = true
+		#jump_held += delta
+		
+		#jump_modifier = jump_held * 10
+
+		character.velocity.y = character.JUMP_VELOCITY

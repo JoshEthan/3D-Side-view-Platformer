@@ -10,8 +10,6 @@ var is_walking: bool
 
 func Enter():
 	# Reset variables
-	input_dir = Vector2.ZERO
-	move_direction = Vector3.ZERO
 	print("Entered Walk State")
 	
 func Exit():
@@ -19,12 +17,13 @@ func Exit():
 	
 func Update(_delta: float):
 	if character.is_on_floor():
-		if move_direction.length() == 0:
+		print(move_direction)
+		if Input.is_action_just_released("ui_left") or Input.is_action_just_released("ui_right"):
 			Transitioned.emit(self, "Idle")
 		elif Input.is_action_just_pressed("ui_accept"):
 			Transitioned.emit(self, "Jump")
 	elif !character.is_on_floor():
-		Transitioned.emit(self, "Fall")
+		Transitioned.emit(self, "fall_state")
 		
 	if move_direction:
 		character.flip_mesh()
